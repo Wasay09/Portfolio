@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: #060810;
+  color: #f0f4ff;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #060810; }
+::-webkit-scrollbar-thumb { background: #2563eb; border-radius: 2px; }
+
+.text-gradient {
+  background: linear-gradient(90deg, #3b82f6, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(37,99,235,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37,99,235,0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.clip-btn {
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Ambient orbs */
+.orb {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(90px);
+  opacity: 0.13;
+}
+.orb-1 {
+  width: 520px; height: 520px;
+  background: #1e40af;
+  top: -160px; right: -160px;
+  animation: drift1 18s ease-in-out infinite alternate;
+}
+.orb-2 {
+  width: 360px; height: 360px;
+  background: #38bdf8;
+  bottom: -80px; left: -80px;
+  animation: drift2 22s ease-in-out infinite alternate;
+}
+
+@keyframes drift1 {
+  from { transform: translate(0,0) scale(1); }
+  to   { transform: translate(50px,30px) scale(1.08); }
+}
+@keyframes drift2 {
+  from { transform: translate(0,0) scale(1); }
+  to   { transform: translate(-30px,40px) scale(1.05); }
+}
+
+/* Scanline overlay */
+.scanline-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  background: linear-gradient(180deg, transparent 0%, rgba(37,99,235,0.02) 50%, transparent 100%);
+  background-size: 100% 3px;
+  animation: scanline 8s linear infinite;
+  opacity: 0.45;
+}
+
+@keyframes scanline {
+  from { background-position: 0 0; }
+  to   { background-position: 0 100vh; }
+}
